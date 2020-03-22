@@ -10,8 +10,6 @@ if (!empty($_POST['account'])) {
 
     $account = $_POST['account']
 
-    echo $json_str;
-
     $jsonData = array(
         //'CustomerAccount' => '33747501',
         'CustomerAccount' => $account,

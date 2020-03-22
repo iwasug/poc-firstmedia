@@ -4,7 +4,7 @@ date_default_timezone_set('Asia/Jakarta');
 $date = date('Y-m-d H:i:s');
 $formula = $date . '#FM#Freshwork#2020@fc9631fFreshwork';
 $token = md5($formula);
-$json_str = file_get_contents('php://input');
+$data = json_decode(file_get_contents("php://input"));
 //echo $formula . '</br>' . $token;
 if (!empty($json_str) {
     $url = "https://fm1.firstmedia.com/FMCOMAPIRest/Content/Homepage";

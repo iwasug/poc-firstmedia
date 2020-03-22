@@ -5,6 +5,12 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    header('Method Not Allowed', true, 405);
+    echo "GET method requests are not accepted for this resource";
+    exit;
+}
+
 date_default_timezone_set('Asia/Jakarta');
 $date = date('Y-m-d H:i:s');
 $formula = $date . '#FM#Freshwork#2020@fc9631fFreshwork';
@@ -13,7 +19,6 @@ $token = md5($formula);
 $data = json_decode(file_get_contents("php://input"));
 if (!empty($data))
 {
-    //echo json_encode($data);
 
     $url = "https://fm1.firstmedia.com/FMCOMAPIRest/Content/Homepage";
 
@@ -48,7 +53,7 @@ if (!empty($data))
 }
 else
 {
-    header('HTTP/1.0 403 Forbidden');
+    header('Access Denied', true, 403);
     echo "Access Denied";
 }
 

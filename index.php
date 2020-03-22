@@ -8,7 +8,7 @@ $token = md5($formula);
 if (!empty($_POST['account'])) {
     $url = "https://fm1.firstmedia.com/FMCOMAPIRest/Content/Homepage";
 
-    $account = $_POST['account']
+    $account = $_POST['account'];
 
     $jsonData = array(
         //'CustomerAccount' => '33747501',
@@ -34,7 +34,6 @@ if (!empty($_POST['account'])) {
     
     //Execute the request
     $result = curl_exec($ch);
-
 
     header("Content-Type: application/json; charset=UTF-8");
     echo json_encode($result);

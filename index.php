@@ -36,7 +36,6 @@ if (!empty($_POST['account'])) {
     $result = curl_exec($ch);
 
     header("Content-Type: application/json; charset=UTF-8");
-    echo json_encode($result);
 }
 else
 {

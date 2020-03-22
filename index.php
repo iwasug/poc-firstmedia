@@ -11,11 +11,13 @@ $url = "https://fm1.firstmedia.com/FMCOMAPIRest/Content/Homepage";
 
 $jsonData = array(
     'CustomerAccount' => '33747501',
-    'Client' => 'Client',
+    'Client' => 'Freshwork',
     'OtherInfo' => '',
     'RequestDate' => $date,
     'Token' => $token,
 );
+
+$ch = curl_init($url);
 
 $jsonDataEncoded = json_encode($jsonData);
 
@@ -31,7 +33,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 //Execute the request
 $result = curl_exec($ch);
 
-echo $result;
+echo json_encode($result);
 echo $jsonDataEncoded;
 
 ?>

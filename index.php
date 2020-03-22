@@ -1,14 +1,23 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 date_default_timezone_set('Asia/Jakarta');
 $date = date('Y-m-d H:i:s');
 $formula = $date . '#FM#Freshwork#2020@fc9631fFreshwork';
 $token = md5($formula);
-//echo $formula . '</br>' . $token;
-if (!empty($_POST['account'])) {
+
+$data = json_decode(file_get_contents("php://input"));
+if (!empty($data))
+{
+    //echo json_encode($data);
+
     $url = "https://fm1.firstmedia.com/FMCOMAPIRest/Content/Homepage";
 
-    $account = $_POST['account'];
+    $account = $data->account;
 
     $jsonData = array(
         //'CustomerAccount' => '33747501',

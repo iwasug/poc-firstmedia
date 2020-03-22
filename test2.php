@@ -5,6 +5,11 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
+date_default_timezone_set('Asia/Jakarta');
+$date = date('Y-m-d H:i:s');
+$formula = $date . '#FM#Freshwork#2020@fc9631fFreshwork';
+$token = md5($formula);
+
 $data = json_decode(file_get_contents("php://input"));
 if (!empty($data))
 {

@@ -32,6 +32,6 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 $result = curl_exec($ch);
 
 echo $result;
-echo $token;
+echo $jsonDataEncoded;
 
 ?>

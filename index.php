@@ -12,6 +12,8 @@ if (!empty($json_str) {
     $obj = json_decode($json_str);    
     $tag = $obj->tag;
 
+    echo $json_str;
+
     $jsonData = array(
         //'CustomerAccount' => '33747501',
         'CustomerAccount' => $account,

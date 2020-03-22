@@ -16,7 +16,7 @@ if (!empty($json_str) {
 
     $jsonData = array(
         //'CustomerAccount' => '33747501',
-        'CustomerAccount' => $account,
+        'CustomerAccount' => $tag,
         'Client' => 'Freshwork',
         'OtherInfo' => '',
         'RequestDate' => $date,

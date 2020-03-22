@@ -4,19 +4,17 @@ date_default_timezone_set('Asia/Jakarta');
 $date = date('Y-m-d H:i:s');
 $formula = $date . '#FM#Freshwork#2020@fc9631fFreshwork';
 $token = md5($formula);
-$data = json_decode(file_get_contents("php://input"));
 //echo $formula . '</br>' . $token;
-if (!empty($json_str) {
+if (!empty($_POST['account'])) {
     $url = "https://fm1.firstmedia.com/FMCOMAPIRest/Content/Homepage";
 
-    $obj = json_decode($json_str);    
-    $tag = $obj->tag;
+    $account = $_POST['account']
 
     echo $json_str;
 
     $jsonData = array(
         //'CustomerAccount' => '33747501',
-        'CustomerAccount' => $tag,
+        'CustomerAccount' => $account,
         'Client' => 'Freshwork',
         'OtherInfo' => '',
         'RequestDate' => $date,

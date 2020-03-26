@@ -45,5 +45,20 @@
             curl_close($curl);
             return $result;
          }
+
+         function callAPI_v2($method, $url, $data){
+            $opts = array('http' =>
+            array(
+                'method'  => $method,
+                'header'  => "Content-Type: application/json\r\n",
+                'content' => $data,
+                'timeout' => 60
+            )
+            );
+                                
+            $context  = stream_context_create($opts);
+            $result = file_get_contents($url, false, $context);
+            return $result;
+         }
     }
 ?>

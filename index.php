@@ -52,14 +52,24 @@ if (!empty($data))
             
             // //Execute the request
             // $result = curl_exec($ch);
-            $make_call = $http->callAPI('POST', $url, $jsonDataEncoded);
+            $make_call = $http->callAPI_v2('POST', $url, $jsonDataEncoded);
 
-            $response = json_decode($make_call, true);
+            $result = json_decode($make_call);
 
-            $response["status"] = 200;
-            $response["message"] = "";
-            $response["data"] = $response;
-            echo json_encode($response);
+            if($result->Rcode == "104")
+            {
+                $response["status"] = 200;
+                $response["message"] = "";
+                $response["data"] = $result;
+                echo json_encode($response);
+            }
+            else
+            {
+                $response["status"] = 500;
+                $response["message"] = $result->Result;
+                echo json_encode($response);
+            }
+
         break;
         case 'inbound':
 

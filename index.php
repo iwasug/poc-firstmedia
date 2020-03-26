@@ -17,7 +17,7 @@ $token = md5($formula);
 $data = json_decode(file_get_contents("php://input"));
 if (!empty($data))
 {
-    $response = array("status" => 0, "message" => "", "data" => "");
+    $response = array("status" => 0, "message" => "", "data" => null);
     $tag = $data->tag;
     require_once 'DB_Functions.php';
     require_once 'Http_Functions.php';

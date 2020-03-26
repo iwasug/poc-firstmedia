@@ -16,8 +16,19 @@ class DB_Functions {
 	
     
     public function insertInbound($userId, $content, $respond, $inbondCode) {
-        $ret = mysqli_query($this->con, "INSERT INTO Inbound VALUES(uuid(), '$userId', '$content', '$respond', '$respond', now())");
+        $ret = mysqli_query($this->con, "INSERT INTO Inbound VALUES(uuid(), '$userId', '$content', '$respond', '$inbondCode', now())");
         return $ret;
+    }
+    
+    public function getInbound($userId, $inbondCode) {
+        $json = array();
+        if($result = mysqli_query($this->con, "SELECT userId,content,respond,inboundCode FROM Inbound WHERE userid='$userId' and inboundcode='$inbondCode';"))
+        {
+            while($row = $result->fetch_array(MYSQLI_ASSOC)) {
+                $json[] = $row;
+            }
+        }
+        return $json;
 	}
 	
     /**

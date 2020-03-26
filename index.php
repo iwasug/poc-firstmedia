@@ -37,21 +37,8 @@ if (!empty($data))
 
             $http = new Http_Functions();
         
-            // $ch = curl_init($url);
-        
             $jsonDataEncoded = json_encode($jsonData);
-        
-            // //Tell cURL that we want to send a POST request.
-            // curl_setopt($ch, CURLOPT_POST, 1);
-            
-            // //Attach our encoded JSON string to the POST fields.
-            // curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
-            
-            // //Set the content type to application/json
-            // curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json')); 
-            
-            // //Execute the request
-            // $result = curl_exec($ch);
+
             $make_call = $http->callAPI_v2('POST', $url, $jsonDataEncoded);
 
             $result = json_decode($make_call);
@@ -86,6 +73,29 @@ if (!empty($data))
             {
                 $response["status"] = 200;
                 $response["message"] = "Ok";
+                echo json_encode($response);
+            }
+            else
+            {
+                $response["status"] = 500;
+                $response["message"] = "InternalServerError";
+                echo json_encode($response);
+            }
+        break;
+        case 'get_inbound':
+
+            $db = new DB_Functions();
+
+            $userId = $data->userId; 
+            $inbondCode = $data->inbondCode;
+
+            $ret = $db->getInbound($userId, $inbondCode);
+
+            if(count($ret) != 0)
+            {
+                $response["status"] = 200;
+                $response["message"] = "";
+                $response["data"] = $ret;
                 echo json_encode($response);
             }
             else

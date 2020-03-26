@@ -85,7 +85,7 @@ if (!empty($data))
             if($ret)
             {
                 $response["status"] = 200;
-                $response["message"] = "";
+                $response["message"] = "Ok";
                 echo json_encode($response);
             }
             else

@@ -19,6 +19,11 @@ class DB_Functions {
         $ret = mysqli_query($this->con, "INSERT INTO Inbound VALUES(uuid(), '$userId', '$content', '$respond', '$inbondCode', now())");
         return $ret;
     }
+
+    public function insertInboundv2($userId, $conversation,$inbondCode) {
+        $ret = mysqli_query($this->con, "INSERT INTO Inbound VALUES(uuid(), '$userId', '$conversation', '$inbondCode', now())");
+        return $ret;
+    }
     
     public function getInbound($userId, $inbondCode) {
         $json = array();

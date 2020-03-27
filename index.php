@@ -63,11 +63,12 @@ if (!empty($data))
             $db = new DB_Functions();
 
             $userId = $data->userId; 
-            $content = $data->content; 
-            $respond = $data->respond; 
+            $conversation = $data->conversation; 
             $inbondCode = $data->inbondCode;
 
-            $ret = $db->insertInbound($userId, $content, $respond, $inbondCode);
+            $conve = json_encode($conversation);
+
+            $ret = $db->insertInboundv2($userId, $conve, $inbondCode);
 
             if($ret)
             {

@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
      <!DOCTYPE html>
     <html>
     <head>
-    <title>POC - Fistmedia</title>
+    <title>Fistmedia Chatbot</title>
     <script>
     function initFreshChat() {
         window.fcWidget.init({
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     </script>
     </head>
     <body>
-    <h1>POC - Fistmedia</h1>
+    <h1>Fistmedia Chatbot</h1>
     </body>
     </html> 
     <?php

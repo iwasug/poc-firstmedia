@@ -20,14 +20,41 @@ class DB_Functions {
         return $ret;
     }
 
-    public function insertInboundv2($userId, $conversation,$inbondCode) {
+    public function insertInboundV2($userId, $conversation,$inbondCode) {
         $ret = mysqli_query($this->con, "INSERT INTO Inbound VALUES(uuid(), '$userId', '$conversation', '$inbondCode', now())");
         return $ret;
     }
+
+    public function insertContent($userId, $content) {
+        $ret = mysqli_query($this->con, "INSERT INTO Content VALUES(uuid(), '$userId', '$content', now())");
+        return $ret;
+    }
+
+    public function getContent() {
+        $json = array();
+        if($result = mysqli_query($this->con, "SELECT * FROM Content;"))
+        {
+            while($row = $result->fetch_array(MYSQLI_ASSOC)) {
+                $json[] = $row;
+            }
+        }
+        return $json;
+	}
     
     public function getInbound($userId, $inbondCode) {
         $json = array();
-        if($result = mysqli_query($this->con, "SELECT userId,content,respond,inboundCode FROM Inbound WHERE userid='$userId' and inboundcode='$inbondCode';"))
+        if($result = mysqli_query($this->con, "SELECT userId,`conversation`,inboundCode FROM Inbound WHERE userid='$userId' and inboundcode='$inbondCode';"))
+        {
+            while($row = $result->fetch_array(MYSQLI_ASSOC)) {
+                $json[] = $row;
+            }
+        }
+        return $json;
+    }
+    
+    public function getInboundV2() {
+        $json = array();
+        if($result = mysqli_query($this->con, "SELECT * FROM Inbound ;"))
         {
             while($row = $result->fetch_array(MYSQLI_ASSOC)) {
                 $json[] = $row;

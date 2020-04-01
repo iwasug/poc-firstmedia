@@ -133,10 +133,53 @@ else
 
                 $db = new DB_Functions();
 
-                $userId = $data->userId; 
-                $inbondCode = $data->inbondCode;
+                // $userId = $data->userId; 
+                // $inbondCode = $data->inbondCode;
 
-                $ret = $db->getInbound($userId, $inbondCode);
+                $ret = $db->getInboundV2();
+
+                if(count($ret) != 0)
+                {
+                    $response["status"] = 200;
+                    $response["message"] = "";
+                    $response["data"] = $ret;
+                    echo json_encode($response);
+                }
+                else
+                {
+                    $response["status"] = 500;
+                    $response["message"] = "InternalServerError";
+                    echo json_encode($response);
+                }
+            break;
+            case 'content':
+
+                $db = new DB_Functions();
+
+                $userId = $data->userId; 
+                $content = $data->content; 
+
+                $ret = $db->insertContent($userId, $content);
+
+                if($ret)
+                {
+                    $response["status"] = 200;
+                    $response["message"] = "Ok";
+                    echo json_encode($response);
+                }
+                else
+                {
+                    $response["status"] = 500;
+                    $response["message"] = "InternalServerError";
+                    echo json_encode($response);
+                }
+            break;
+
+            case 'get_content':
+
+                $db = new DB_Functions();
+
+                $ret = $db->getContent();
 
                 if(count($ret) != 0)
                 {
